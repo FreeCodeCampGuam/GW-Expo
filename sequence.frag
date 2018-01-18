@@ -33,6 +33,9 @@ void main() {
   vec2 nuv = uv;
   uv /= 2.;
 
+  float sz = .2*volume/12.;
+  nuv = mod(nuv+sz/2., sz)-sz/2.;
+
   float theta = atan(uv.x,uv.y);
 
   vec3 wave = texture2D(spectrum, nuv*rot(PI*.5)+.5).xyz;
@@ -41,8 +44,8 @@ void main() {
   float pn = perlin(vec4(uv*3.*theta*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
 
 
-  float circ = float(length(uv) -.2*volume/40.>0.);
-  float circ2 = float(length(uv) -.1*volume/40.>0.);
+  float circ = float(length(nuv) -.2*volume/40.>0.);
+  float circ2 = float(length(nuv) -.1*volume/40.>0.);
 
   c.r += step(.8, fract(uv.x*20. + pn)) * theta;
   c.b -= step(.5,fract(uv.x*20. -pn));
