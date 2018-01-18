@@ -33,18 +33,20 @@ void main() {
   vec2 nuv = uv;
   uv /= 2.;
 
+  float theta = atan(uv.x,uv.y);
+
   vec3 wave = texture2D(spectrum, nuv*rot(PI*.5)+.5).xyz;
   vec3 wave2 = texture2D(spectrum, (uv-.5)/20.).xyz;
 
   float pn = perlin(vec4(uv*3.*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
 
-  c.r += step(.8, fract(uv.x*20. + pn));
+  c.r += step(.8, fract(uv.x*20. + pn)) * theta;
   c.b += fract(uv.x*20. -pn)/3.;
 
   c.rg *= rot(time/2.);
   c.gb *= rot(time/3.);
 
-  c += wave*pn;
+  //c += wave*pn;
 
 
   gl_FragColor=vec4(c, 1);
