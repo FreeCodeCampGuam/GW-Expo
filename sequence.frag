@@ -48,11 +48,12 @@ float pModPolar(inout vec2 p, float repetitions) {
 vec2 sdf(vec3 p) {
   float cs = .6;
 
-  float ms = cs+cs*2.;
-  p.x = mod(p.x+ms/2., ms)-ms/2.;
+  float ms = cs+cs*2.+cs*4.;
 
+  pR(p.zx, time/4.);
+  pR(p.xy, time/5.);
+  p.xyz = mod(p.xyz+ms/2., ms)-ms/2.;
   pR(p.xy, time*2.+volume/10.);
-  pR(p.zy, time/4.);
   pModPolar(p.xy, 4.+floor(volume/2.));
 
   p -= .1;
@@ -194,8 +195,8 @@ void main() {
   c.bg *= rot(time/7.);
 
   c = min(c, 1.);
-  c /= 2.;
-  c += cc/30.;
+  c /= 20.;
+  c += cc/2.;
 
 
   gl_FragColor=vec4(c, 1);
