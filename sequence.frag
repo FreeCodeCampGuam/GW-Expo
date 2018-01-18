@@ -33,11 +33,11 @@ void main() {
   vec2 nuv = uv;
   uv /= 2.;
 
-  float cs = .3;
+  float cs = .4;
   cs *= sin(time)*cs+cs;
   nuv *= rot(time/2.+volume/29.);
   float sz = cs*volume/22.;
-  nuv = mod(nuv+sz/2., sz)-sz/2.;
+  nuv.x = mod(nuv.x+sz/2., sz)-sz/2.;
 
   float theta = atan(uv.x,uv.y);
 
@@ -59,7 +59,6 @@ void main() {
   c = vec3(length(c));
 
   c -= 1./(circ-circ2)/2.5;
-
 
   //c += wave*pn;
 
