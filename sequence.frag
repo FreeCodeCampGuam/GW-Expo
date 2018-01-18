@@ -41,6 +41,9 @@ void main() {
   c.r += step(.8, fract(uv.x*20. + pn));
   c.b += fract(uv.x*20. -pn)/3.;
 
+  c.rg *= rot(time/2.);
+  c.gb *= rot(time/3.);
+
   c += wave*pn;
 
 
