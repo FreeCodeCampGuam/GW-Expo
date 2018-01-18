@@ -33,8 +33,10 @@ void main() {
   vec2 nuv = uv;
   uv /= 2.;
 
+  float cs = .3;
+  cs *= sin(time)*cs+cs;
   nuv *= rot(time/2.+volume/29.);
-  float sz = .2*volume/22.;
+  float sz = cs*volume/22.;
   nuv = mod(nuv+sz/2., sz)-sz/2.;
 
   float theta = atan(uv.x,uv.y);
@@ -45,8 +47,8 @@ void main() {
   float pn = perlin(vec4(uv*3.*theta*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
 
 
-  float circ = float(length(nuv) -.2*volume/40.>0.);
-  float circ2 = float(length(nuv) -.1*volume/40.>0.);
+  float circ = float(length(nuv) -cs*volume/40.>0.);
+  float circ2 = float(length(nuv) -(cs/2.)*volume/40.>0.);
 
   c.r += step(.8, fract(uv.x*20. + pn)) * theta;
   c.b -= step(.5,fract(uv.x*20. -pn));
@@ -54,8 +56,9 @@ void main() {
   c.rg *= rot(time/2.);
   c.gb *= rot(time/3.);
 
+  c = vec3(length(c));
 
-  c -= 1./(circ-circ2);
+  c -= 1./(circ-circ2)/2.5;
 
 
   //c += wave*pn;
