@@ -47,6 +47,10 @@ float pModPolar(inout vec2 p, float repetitions) {
 
 vec2 sdf(vec3 p) {
   float cs = .6;
+
+  float ms = cs+cs*2.;
+  p.x = mod(p.x+ms/2., ms)-ms/2.;
+
   pR(p.xy, time*2.+volume/10.);
   pR(p.zy, time/4.);
   pModPolar(p.xy, 4.+floor(volume/2.));
@@ -155,11 +159,12 @@ void main() {
 
   vec3 collision = raycast(cuv, ray);  // vec3(iter_dist, id, dist)
 
+  vec3 cc = vec3(0);
   if (collision.x < EPSILON) {
     c = vec3(1);
+    cc = c;
+
   }
-
-
 
   float theta = atan(uv.x,uv.y);
 
@@ -190,6 +195,7 @@ void main() {
 
   c = min(c, 1.);
   c /= 2.;
+  c += cc/30.;
 
 
   gl_FragColor=vec4(c, 1);
