@@ -47,7 +47,7 @@ void main() {
   float pn = perlin(vec4(uv*3.*theta*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
 
 
-  float circ = float(length(nuv) -cs*volume/40.>0.);
+  float circ = float(length(nuv*pn) -cs*volume/40.>0.);
   float circ2 = float(length(nuv) -(cs/2.)*volume/40.>0.);
 
   c.r += step(.8, fract(uv.x*20. + pn)) * theta;
