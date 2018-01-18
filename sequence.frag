@@ -62,6 +62,10 @@ void main() {
 
   //c += wave*pn;
 
+  c.r *= .1;
+  c.rg *= rot(time/6.);
+  c.bg *= rot(time/7.);
+
 
   gl_FragColor=vec4(c, 1);
 }
