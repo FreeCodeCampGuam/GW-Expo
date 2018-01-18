@@ -66,6 +66,9 @@ void main() {
   c.rg *= rot(time/6.);
   c.bg *= rot(time/7.);
 
+  c = min(c, 1.);
+  c /= 10.;
+
 
   gl_FragColor=vec4(c, 1);
 }
