@@ -34,8 +34,11 @@ void main() {
   uv /= 2.;
 
   vec3 wave = texture2D(spectrum, nuv*rot(PI*.5)+.5).xyz;
+  vec3 wave2 = texture2D(spectrum, (uv-.5)/20.).xyz;
 
-  c += wave;
+  float pn = perlin(vec4(uv*3.*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
+
+  c += wave*pn;
 
 
   gl_FragColor=vec4(c, 1);
