@@ -38,6 +38,9 @@ void main() {
 
   float pn = perlin(vec4(uv*3.*atan(uv.x,uv.y-.5), time/20., wave2.x*3.));
 
+  c.r += step(.8, fract(uv.x*20. + pn));
+  
+
   c += wave*pn;
 
 
