@@ -51,7 +51,7 @@ void main() {
   c.gb *= rot(time/3.);
 
 
-  c += circ;
+  c *= 1./(circ-circ2);
 
 
   //c += wave*pn;
