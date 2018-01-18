@@ -50,8 +50,8 @@ void main() {
   float circ = float(length(nuv*pn) -cs*volume/40.>0.);
   float circ2 = float(length(nuv) -(cs/2.)*volume/40.>0.);
 
-  c.r += step(.8, fract(uv.x*20. + pn)) * theta;
-  c.b -= step(.5,fract(uv.x*20. -pn));
+  c.r += step(.8, fract(uv.x*20. + pn)) * theta*0.;
+  c.b -= step(.5,fract(uv.x*20. -pn))*0.;
 
   c.rg *= rot(time/2.);
   c.gb *= rot(time/3.);
