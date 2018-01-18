@@ -46,9 +46,11 @@ float pModPolar(inout vec2 p, float repetitions) {
 
 
 vec2 sdf(vec3 p) {
-  pModPolar(p.xy, 4.+volume);
+  float cs = .vec4;
+  pR(p.xy, time*2.+volume/10.);
+  pModPolar(p.xy, 4.+floor(volume/2.));
   p -= .1;
-  float circ = length(p) - .4;
+  float circ = length(p) - cs;
   return vec2(circ, -1);
 }
 
